@@ -26,5 +26,5 @@ jobs:
           locName=`az group show --name ${{ secrets.rg }} --query location --output tsv`
           az monitor app-insights component create --app apimon${{ secrets.webapp }} --location $locName --kind web -g ${{ secrets.rg }} --application-type web --retention-time 30
           instrumentationKey=`az monitor app-insights component show --app apimon${{ secrets.webapp }} --resource-group ${{ secrets.rg }} --query  "instrumentationKey" --output tsv`
-          az webapp config appsettings set --name $webapp --resource-group ${{ secrets.rg }} --settings APPINSIGHTS_INSTRUMENTATIONKEY=$instrumentationKey APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=$instrumentationKey ApplicationInsightsAgent_EXTENSION_VERSION=~2
+          az webapp config appsettings set --name ${{ secrets.webapp }} --resource-group ${{ secrets.rg }} --settings APPINSIGHTS_INSTRUMENTATIONKEY=$instrumentationKey APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=$instrumentationKey ApplicationInsightsAgent_EXTENSION_VERSION=~2
 
